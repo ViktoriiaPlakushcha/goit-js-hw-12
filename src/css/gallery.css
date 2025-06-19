@@ -131,7 +131,7 @@ input[name="search-text"]:focus {
 .gallery-card img {
     width: 100%;
     object-fit: cover;
-    max-height: 152px;
+    height: 152px;
 }
 .card-list {
     display: flex;
