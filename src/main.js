@@ -3,10 +3,11 @@ import iziToast from "izitoast";
 // Додатковий імпорт стилів
 import "izitoast/dist/css/iziToast.min.css";
 import { getImagesByQuery } from "./js/pixabay-api.js";
-import { createGallery, clearGallery, showLoader, hideLoader, showLoadMoreButton, hideLoadMoreButton, loadMoreBtn } from "./js/render-functions.js"
+import { createGallery, clearGallery, showLoader, hideLoader, showLoadMoreButton, hideLoadMoreButton } from "./js/render-functions.js"
 
 
 const form = document.querySelector('.form');
+const loadMoreBtn = document.querySelector('.more-btn')
 
 form.addEventListener('submit', handleSubmit);
 let searchWord = null;
@@ -50,14 +51,14 @@ async function handleSubmit(event) {
         hideLoader();
     };
 
-    if (totalPages > 1) {
-        showLoadMoreButton();
-    } else {
+    if (page === totalPages) {
         showToast({
             message: "We're sorry, but you've reached the end of search results.",
             backgroundColor: "yellow",
             messageColor: 'black',
         });
+    } else {
+            showLoadMoreButton();
     };
 };
 
@@ -70,7 +71,6 @@ async function handleClick() {
         showLoader();
         const results = await getImagesByQuery(searchWord, page);
         createGallery(results.hits);
-        hideLoader();
         let galleryCard = document.querySelector('.gallery-card');
         if (galleryCard) {
             cardMesure = galleryCard.getBoundingClientRect();
@@ -92,6 +92,8 @@ async function handleClick() {
         showToast({
             message: error.message,
         });
+    } finally {
+        hideLoader();
     };
 };
 

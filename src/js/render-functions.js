@@ -33,7 +33,7 @@ function createGallery(images) {
         </a>
         <ul class="card-list">
         <li><h3>Likes</h3><p>${likes}</p></li>
-        <li><h3>Viwes</h3><p>${views}</p></li>
+        <li><h3>Views</h3><p>${views}</p></li>
         <li><h3>Comments</h3><p>${comments}</p></li>
         <li><h3>Downloads</h3><p>${downloads}</p></li>
         </ul>
@@ -63,4 +63,4 @@ function hideLoadMoreButton() {
     loadMoreBtn.classList.add('hidden');
 }
 
-export { createGallery, clearGallery, showLoader, hideLoader, showLoadMoreButton, hideLoadMoreButton, loadMoreBtn };
+export { createGallery, clearGallery, showLoader, hideLoader, showLoadMoreButton, hideLoadMoreButton };
